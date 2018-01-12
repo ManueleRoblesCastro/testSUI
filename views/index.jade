@@ -1,0 +1,12 @@
+extends layout
+block content
+	-var menu ='colector2'
+
+	h1= title
+	div(class=['ui','container','grid','stackable'] id='contendorprincipal')
+	if menu=='colector'
+		p Welcome to #{title}
+	else 
+		include templates/nav
+
+

@@ -1,0 +1,87 @@
+//-extends ../layout
+block content
+
+	div(class=['ui', 'sidebar', 'vertical', 'left', 'inverted', 'menu'])
+		div(class='item')
+			div(class='header')='Expediente'
+			div(class='menu')
+				a(class='item')='Cuentas bancarias'
+				a(class='item')='Avisos de fijación'
+				a(class='item')='Estado'
+				a(class='item')='Plan de pago'
+		div(class='item')
+			div(class='header')='Cuotas Recibidas'
+			div(class='menu')
+				a(class='item')='Pendientes de pago'
+				a(class='item')='Recibidas'
+				a(class='item')='Estado de cuenta'
+		div(class='item')
+			div(class='header')='Cuotas del Exterior'
+			div(class='menu')
+				a(class='item')='Detalle anual'
+				a(class='item')='Resumen anual'
+				a(class='item')='Expedientes'      
+		div(class='item')
+			div(class='header')='Tableros'
+			div(class='menu')
+				a(class='item')='Reporte por color'
+				a(class='item' id='consultapago')='www.pgr.gob.sv/consultapago'          
+
+	div(class=['ui', 'basic', 'icon', 'top', 'fixed', 'menu'])
+		div(id='toggle' class='item')='Menu'
+			i(class=['sidebar', 'icon'])     
+
+		div(class=['ui', 'dropdown', 'icon', 'item'], id='mainmenu1')
+			div(class = ['ui', 'input', 'right', 'icon'])='Productos|'
+			i(class=['wrench', 'icon'])
+			div(class='menu')
+				div(class='item')
+					i(class=['dropdown', 'icon'])
+					span(class='text')='Operaciones'
+					div(class='menu')
+						div(class='item' id='submnuVerTabla')='Ver en Tabla'
+						div(class='item' id='submnuVerCuadricula')='Ver en Cuadricula'
+				div(class='item' id='submnuReporte1')='Reporte...'
+				div(class='divider')            
+				div(class='item')='Salir...'
+
+		div(class=['ui', 'dropdown', 'icon', 'item'], id='mainmenu2')
+			div(class = ['ui', 'input', 'right', 'icon'])='Usuario|'
+			i(class=['user', 'icon'])
+			div(class='menu')
+				div(class='item')
+					i(class=['dropdown', 'icon'])
+					span(class='text')='Sesion'
+					div(class='menu')
+						div(class='item')='Cerrar'
+						div(class='item' id='submnuSalir')='Salir'
+
+		div(class=['ui', 'dropdown', 'icon', 'item'], id='mainmenu3')     
+			div(class = ['ui', 'input', 'right', 'icon'] id='submnuSalir1')='Salir|'
+			i(class=['external', 'icon'])           
+
+		div(class=['right', 'menu'])
+		a(class=['ui', 'item'] href='#')=title
+		a(class=['ui', 'item'] href='#')='Cerrar Sesión'
+			i(class=['user', 'icon'])
+
+		script(type='text/javascript').
+			$('#mainmenu1').dropdown({
+					on: 'hover'
+				});
+			$('#mainmenu2').dropdown({
+					on: 'hover'
+				});
+			$('#mainmenu3').dropdown({
+					on: 'hover'
+				});
+			$('#toggle').click( function(){
+					$('.ui.sidebar').sidebar('toggle');
+			});
+			$('#submnuVerTabla').on('click',function(){
+				//$('#contendorprincipal').html('<h2>Contact Form Submitted!</h2>');
+				$('#contendorprincipal').load('http://192.168.17.44:3000/productos'); 
+			});
+			$('#consultapago').on('click',function(){
+				$('#contendorprincipal').load('http://192.168.17.44:3000/productos'); 
+			});
